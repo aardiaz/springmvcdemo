@@ -26,7 +26,7 @@ public class StudentController {
 		if (StringUtils.isEmpty(session.getAttribute("username"))) {
 			return "login";
 		}
-		
+
 		model.addAttribute("student", new Student());
 		return "studentForm";
 	}
@@ -35,25 +35,18 @@ public class StudentController {
 	public String addStudent(@ModelAttribute Student student, Model model, HttpSession session) {
 
 		if (StringUtils.isEmpty(session.getAttribute("username"))) {
-			
+
 			return "redirect:/login";
 		}
-		
-		System.out.println("=========city===="+student.getAddress().getCity());
-		
+
 		studentDao.insert(student);
 		model.addAttribute("studentList", studentDao.getAll());
 
 		return "listStudent";
 	}
 
-	
-	
-	
-	
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	
-	
+
 	public String deleteStudent(@PathVariable("id") Long id, Model model, HttpSession session) {
 
 		if (StringUtils.isEmpty(session.getAttribute("username"))) {
@@ -67,17 +60,10 @@ public class StudentController {
 		return "listStudent";
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-	
+
 	public String editStudent(@PathVariable("id") Long id, Model model, HttpSession session) {
-		
+
 		if (StringUtils.isEmpty(session.getAttribute("username"))) {
 			return "login";
 		}
@@ -87,17 +73,8 @@ public class StudentController {
 		return "editStudent";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
-	
+
 	public String updateStudent(@ModelAttribute Student student, Model model, HttpSession session) {
 
 		if (StringUtils.isEmpty(session.getAttribute("username"))) {
@@ -109,16 +86,5 @@ public class StudentController {
 
 		return "listStudent";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
